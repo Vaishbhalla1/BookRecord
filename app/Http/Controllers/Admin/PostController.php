@@ -90,8 +90,8 @@ class PostController extends Controller
         foreach($users as $user){
              Mail::to($user->email)->queue(new NewPost($post));
             // Use notification to notify
-            Notification::route('mail', $user->email)
-                   ->notify(new NewPostNotify($post));
+       //     Notification::route('mail', $user->email)
+           //        ->notify(new NewPostNotify($post));
         }
     }
     $tags = [];
@@ -213,13 +213,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrfail($id);
-        // delete img if exists
-        // delete 1st condition on Production
+        
         if ($post->image !== 'laravel-wiki-5f92a8e71c7bc1603447015.jpg' && Storage::disk('public')->exists('post/' . $post->image)) {
             Storage::disk('public')->delete('post/' . $post->image);
         }
-        // Delete Tags
-        // $post->tags()->delete();
+       
         $post->delete();
         Toastr::success('Post Successfully Deleted :)', 'success');
 

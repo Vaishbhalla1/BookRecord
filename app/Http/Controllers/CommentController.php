@@ -18,7 +18,7 @@ class CommentController extends Controller
         $comment->message = $request->message; //change comment field to message
         $comment->save();
 
-        // Success message
+    
         Toastr::success('success', 'The comment created successfully ;)');
         return redirect()->back();
     }

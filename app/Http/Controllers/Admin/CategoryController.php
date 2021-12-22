@@ -45,7 +45,7 @@ class CategoryController extends Controller
             'description' => 'sometimes|max:1000',
             'image' => 'required|image|mimes:jpg,png,bmp,jpeg'
         ]);
-        // Image
+        
         $image = $request->image;
         $imageName = Str::slug($request->name, '-') . uniqid() . '.' . $image->getClientOriginalExtension();
 
@@ -59,10 +59,9 @@ class CategoryController extends Controller
             $constraint->upsize();
         })->stream();
 
-        // Store in storage public/category
-        Storage::disk('public')->put('category/' . $imageName, $categoryImg); //The put method may be used to store raw file contents on a disk
-
-        //
+     
+        Storage::disk('public')->put('category/' . $imageName, $categoryImg); //The put method may be used to store raw file contents on a dis
+        
         $category = new Category();
         $category->name = $request->name;                  // Php Js Html
         $category->slug = Str::slug($request->name, '-'); // php-js-html

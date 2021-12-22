@@ -18,7 +18,7 @@ class CommentReplyController extends Controller
         $commentReply->message = $request->message;
         $commentReply->save();
 
-        // Success message
+       
         Toastr::success('success', 'The comment replied successfully ;)');
         return redirect()->back();
     }

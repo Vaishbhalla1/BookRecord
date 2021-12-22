@@ -18,8 +18,7 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::findOrFail($id);
-        // Delete all replies
-        $comment->delete();
+              $comment->delete();
         Toastr::success('Comment successfully deleted :)');
         return redirect()->back();
     }
